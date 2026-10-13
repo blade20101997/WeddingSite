@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <!-- Подключаем красивый шрифт с Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Общие стили для страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcfbfa;
+            color: #333333;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            padding: 60px 20px;
+            border-bottom: 1px solid #eae5e1;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* Главный экран */
+        .hero {
+            background-color: #f4efeb;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8c7b70;
+        }
+
+        .date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Тайминг */
+        .timeline {
+            margin: 40px auto 0;
+            text-align: left;
+            max-width: 400px;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            border-left: 2px solid #ca9e92;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-time {
+            font-weight: 500;
+            color: #ca9e92;
+            font-size: 1.1rem;
+        }
+
+        /* Дресс-код */
+        .palette {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .color-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Анкета RSVP (Форма) */
+        form {
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: left;
+            max-width: 450px;
+            margin: 30px auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ca9e92;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #b3887d;
+        }
+
+        /* Адаптивность для мобильных телефонов */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            section { padding: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="container">
+            <p>Приглашение на свадьбу</p>
+            <h1>Александр & Мария</h1>
+            <div class="date">12 июля 2026 года</div>
+        </div>
+    </section>
+
+    <!-- Наше послание -->
+    <section>
+        <div class="container">
+            <h2>Дорогие близкие и друзья!</h2>
+            <p>В нашей жизни происходит прекрасное событие — мы создаем семью. Мы очень хотим разделить этот особенный, счастливый день с вами. Будем рады видеть вас на нашем празднике!</p>
+        </div>
+    </section>
+
+    <!-- Программа дня (Тайминг) -->
+    <section>
+        <div class="container">
+            <h2>Программа дня</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">16:00</div>
+                    <div>Сбор гостей и легкий фуршет</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">16:30</div>
+                    <div>Торжественная выездная регистрация</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">18:00</div>
+                    <div>Свадебный ужин и развлекательная программа</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">22:00</div>
+                    <div>Праздничный торт и финал вечера</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Дресс-код -->
+    <section>
+        <div class="container">
+            <h2>Дресс-код</h2>
+            <p>Мы будем очень благодарны, если при выборе нарядов для нашего праздника вы поддержите нежную цветовую гамму свадьбы:</p>
+            <div class="palette">
+                <!-- Вы можете заменить HEX-коды цветов на свои -->
+                <div class="color-circle" style="background-color: #e3d7d0;" title="Бежевый"></div>
+                <div class="color-circle" style="background-color: #dbb3ab;" title="Пыльная роза"></div>
+                <div class="color-circle" style="background-color: #c4cdc1;" title="Шалфей"></div>
+                <div class="color-circle" style="background-color: #b2c0cc;" title="Серо-голубой"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Анкета гостя -->
+    <section>
+        <div class="container">
+            <h2>Подтвердите свое присутствие</h2>
+            <p>Пожалуйста, заполните анкету до 1 июня, чтобы мы учли ваши пожелания.</p>
+            
+            <!-- Для отправки формы можно использовать бесплатный сервис formspree.io -->
+            <form action="https://formspree.io" method="POST">
+                <div class="form-group">
+                    <label for="name">Ваше имя и фамилия:</label>
+                    <input type="text" id="name" name="name" placeholder="Иван и Ольга Ивановы" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Планируете ли вы присутствовать?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attend" value="yes" checked> Да, с удовольствием</label>
+                        <label><input type="radio" name="attend" value="no"> К сожалению, не смогу</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="alcohol">Предпочтения по напиткам:</label>
+                    <select id="alcohol" name="alcohol">
+                        <option value="wine-red">Вино красное</option>
+                        <option value="wine-white">Вино белое</option>
+                        <option value="champagne">Шампанское</option>
+                        <option value="strong">Крепкие напитки</option>
+                        <option value="non-alcoholic">Не употребляю алкоголь</option>
+                    </select>
+                </div>
+
+                <button type="submit">Отправить ответ</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+</html>
