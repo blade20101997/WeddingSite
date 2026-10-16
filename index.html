@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение на свадьбу</title>
+    <title>Приглашение на свадьбу - Влад и Виола</title>
     <!-- Подключаем красивый шрифт с Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     
     <style>
         /* Общие стили для страницы */
         body {
-            margin: 0;
+            margin: 20;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #fcfbfa;
-            color: #333333;
+            background-color: #0e6e4b;
+            color: #ffffff;
             line-height: 1.6;
             text-align: center;
         }
 
         h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif; font-style: italic;
+			font-size: 40px;
             font-weight: 400;
             margin-bottom: 20px;
         }
@@ -30,12 +31,10 @@
         .container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
 
         section {
-            padding: 60px 20px;
-            border-bottom: 1px solid #eae5e1;
         }
 
         section:last-child {
@@ -45,27 +44,287 @@
         /* Главный экран */
         .hero {
             background-color: #f4efeb;
-            padding: 100px 20px;
+            padding: 80px 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh; /* Задает высоту экрана */
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
+		.hero-border {
+            border: 1px solid #ca9e92;
+            padding: 60px 30px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            background: rgba(252, 251, 250, 0.6); /* Полупрозрачный фон внутри рамки */
+            backdrop-filter: blur(3px); /* Легкое размытие для воздушности */
+            box-sizing: border-box;
+        }
+
+        /* Базовые настройки для обеих SVG-веточек */
+        .svg-branch {
+            position: absolute;   /* Позволяет двигать картинку независимо от текста */
+            width: 150px;          /* Задайте нужную ширину вашей веточки */
+            height: auto;         /* Высота подстроится автоматически */
+            left: 50%;            /* Сдвигаем к центру по горизонтали */
+			max-width: 100%
+		}
+			
+        /* Положение верхней веточки */
+        .branch-top {
+            top: -70px;           /* Выталкиваем наверх, ровно на линию рамки */
+			left: 15%;
+            /* Трюк для идеального центрирования: сдвиг назад на половину своей ширины */
+            transform: translateX(-50%) rotate(90deg); 
+        }
+
+        /* Положение нижней веточки */
+        .branch-bottom {
+            bottom: -70px;        /* Опускаем вниз, ровно на линию рамки */
+			left: 85%;
+            /* Центрируем и зеркально переворачиваем веточку вверх ногами */
+            transform: translateX(-50%) rotate(270deg); 
+        }			
+        
+		/* Задаем родителю относительное позиционирование */
+        .torn-paper-section {
+            position: relative;
+            background-color: #f4efeb; /* Цвет фона этой секции */
+			color: #000000;
+            margin-top: 40px; /* Небольшой запас сверху для наложения бумаги */
+        }
+
+        /* Создаем рваный край с помощью ::before */
+        .torn-paper-section::before {
+            content: "";
+            position: absolute;
+			top: -5px;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Высота нашей бумажной волны */
+            background-image: url("torn-paper-green.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 10; /* Помещаем поверх других элементов */
+            pointer-events: none; /* Чтобы край не мешал кликам, если перекроет кнопку */
+            transform: rotate(180deg);
+		}
+		
+		/* Задаем родителю относительное позиционирование */
+        .torn-paper-green-section {
+            position: relative;
+            background-color: #0e6e4b; /* Цвет фона этой секции */
+            margin-top: 40px; /* Небольшой запас сверху для наложения бумаги */
+        }
+
+        /* Создаем рваный край с помощью ::before */
+        .torn-paper-green-section::before {
+            content: "";
+            position: absolute;
+			top: -40px;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Высота нашей бумажной волны */
+            background-image: url("torn-paper.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 10; /* Помещаем поверх других элементов */
+            pointer-events: none; /* Чтобы край не мешал кликам, если перекроет кнопку */
+            transform: rotate(180deg);
+		}
+			
         .hero h1 {
-            font-size: 3.5rem;
-            margin: 10px 0;
-            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif; font-style: italic;
+            font-size: 3.2rem;
+            margin: 5px 0;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            color: #4a3e3d;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: #8c7b70;
-        }
+            margin: 0;
+		}
 
         .date {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin-top: 20px;
+            font-size: 1.8rem;
+            margin-top: 25px;
             font-style: italic;
+            color: #ca9e92;
+        }
+
+        /* Секция календаря */
+        .calendar-section {
+            background-color: #f4efeb;
+        }
+
+        .calendar-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: #8c7b70;
+            margin-bottom: 30px;
+        }
+
+        /* Контейнер для центрирования сетки */
+        .calendar-wrapper {
+            max-width: 350px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Создаем сетку из 7 равных колонок */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            row-gap: 15px;
+            text-align: center;
+        }
+
+        /* Стили для дней недели */
+        .weekdays {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #ca9e92;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eae5e1;
+            padding-bottom: 10px;
+        }
+
+        /* Стили для чисел */
+        .days {
+            font-size: 1rem;
+            color: #4a4a4a;
+            align-items: center;
+        }
+
+        /* Выделяем обычные выходные дни (6 и 7 колонки) серым цветом */
+        .days div:nth-child(7n), 
+        .days div:nth-child(7n-1) {
+            color: #a89f98;
+        }
+
+        /* Стили для ячейки дня свадьбы (26 июня) */
+        .wedding-day {
+            position: relative;
+            font-weight: 600;
+            /* Перебиваем серый цвет субботы, делая дату важной и заметной */
+            color: #4a3e3d !important; 
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+        }
+
+        /* Цифра 26 поверх картинки */
+        .wedding-day span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Наложение вашей SVG-картинки */
+        .wedding-day::before {
+            content: "";
+            position: absolute;
+            width: 46px; /* Оптимальный размер под двухзначное число "26" */
+            height: 46px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            /* Подключение вашего файла из корня проекта */
+            background-image: url("calendar-mark.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            
+            z-index: 1;
+            animation: heartBeat 2.5s infinite ease-in-out;
+        }
+
+        /* Анимация мягкой пульсации отметки */
+        @keyframes heartBeat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .location-address {
+            font-size: 1.05rem;
+            color: #4a3e3d; /* Чуть более глубокий цвет для лучшей читаемости */
+            max-width: 550px; /* Немного увеличиваем ширину под длинный адрес */
+            margin: 0 auto 40px;
+            font-family: 'Montserrat', sans-serif;
+            
+            /* Настройки рамки и фона */
+            border: 1px solid #ca9e92; /* Тонкая рамка цвета пыльной розы */
+            background-color: #f4efeb; /* Нежный пастельный фон */
+            padding: 15px 25px; /* Внутренние отступы, чтобы тексту не было тесно */
+            border-radius: 8px; /* Легкое скругление углов */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02); /* Почти незаметная воздушная тень */
+            
+            /* Центрируем текст внутри рамки */
+            display: inline-block; /* Чтобы рамка сжималась под размер текста, а не растягивалась на весь экран */
+            box-sizing: border-box;        }
+
+        /* Контейнер-сетка для фото и карты */
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Рамки для фото и карты */
+        .location-photo-wrapper, .location-map-wrapper {
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            background-color: #eae5e1;
+        }
+
+        /* Фото */
+        .location-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Карта */
+        .location-map-wrapper iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Адаптивность для мобильных телефонов */
+        @media (max-width: 768px) {
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .location-photo-wrapper, .location-map-wrapper {
+                height: 280px;
+            }
         }
 
         /* Тайминг */
@@ -89,18 +348,40 @@
         }
 
         /* Дресс-код */
+        /* Общий контейнер для всей палитры */
         .palette {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            flex-wrap: wrap; /* Разрешает кружкам переноситься на новую строку на узких экранах */
+            gap: 25px; /* Расстояние между ячейками цветов */
             margin-top: 30px;
         }
 
+        /* Ячейка конкретного цвета (кружок + текст) */
+        .palette-item {
+            display: flex;
+            flex-direction: column; /* Выстраивает элементы внутри ячейки вертикально */
+            align-items: center; /* Центрирует текст строго под кружком */
+            width: 90px; /* Фиксированная ширина ячейки, чтобы длинные названия переносились аккуратно */
+        }
+
+        /* Стиль самого цветного кружка */
         .color-circle {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
+			border-style: solid;
+			border-color: white;
             border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 10px; /* Отступ снизу от кружка до текста */
+        }
+
+        /* Стиль названия цвета */
+        .color-name {
+            font-size: 0.8rem;
+            color: #6e6560;
+            font-weight: 400;
+            line-height: 1.2;
         }
 
         /* Анкета RSVP (Форма) */
@@ -116,6 +397,7 @@
 
         .form-group {
             margin-bottom: 20px;
+			color: #000000;
         }
 
         label {
@@ -159,33 +441,138 @@
 
         /* Адаптивность для мобильных телефонов */
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1rem; }
-            section { padding: 40px 15px; }
-        }
-    </style>
+            .hero { padding: 40px 10px; min-height: auto; }
+            .hero-border { padding: 40px 15px; }
+            .hero h1 { font-size: 2.3rem; }
+            .location-address {
+                display: block;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+		}
+		</style>
 </head>
 <body>
 
     <!-- Главный экран -->
     <section class="hero">
-        <div class="container">
+        <div class="hero-border">
+			<img src="leaves.svg" alt="" class="svg-branch branch-top">
             <p>Приглашение на свадьбу</p>
-            <h1>Александр & Мария</h1>
-            <div class="date">12 июля 2026 года</div>
+            <h1>Владислав</h1>
+			<h1>&</h1>
+			<h1>Виолетта</h1>
+            <div class="date">26 июня 2027 года</div>
+			<img src="leaves.svg" alt="" class="svg-branch branch-bottom">
         </div>
     </section>
 
     <!-- Наше послание -->
-    <section>
+    <section class="torn-paper-green-section">
         <div class="container">
             <h2>Дорогие близкие и друзья!</h2>
-            <p>В нашей жизни происходит прекрасное событие — мы создаем семью. Мы очень хотим разделить этот особенный, счастливый день с вами. Будем рады видеть вас на нашем празднике!</p>
+            <p>В нашей жизни происходит прекрасное событие — создание семьи. Мы очень хотим видеть вас в этот день рядом с нами! Будем рады вам на нашем празднике!</p>
+        </div>
+    </section>
+	
+	<!-- Календарь -->
+	<section class="torn-paper-section">
+		<!-- Блок календаря под дату 26.06.27 -->
+		<section class="calendar-section">
+			<div class="container">
+				<h2>Дата торжества</h2>
+				<p class="calendar-subtitle">Июнь 2027</p>
+				
+				<div class="calendar-wrapper">
+					<!-- Дни недели -->
+					<div class="calendar-grid weekdays">
+						<div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+					</div>
+					
+					<!-- Дни месяца -->
+					<div class="calendar-grid days">
+						<!-- 1 пустая ячейка, так как 1 июня 2027 — это вторник -->
+						<div class="empty"></div>
+						
+						<!-- Числа месяца -->
+						<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+						<div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div>
+						<div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
+						<div>21</div><div>22</div><div>23</div><div>24</div><div>25</div>
+						
+						<!-- Суббота, 26 июня — День вашей свадьбы! -->
+						<div class="wedding-day">
+							<span>26</span>
+						</div>
+						
+						<div>27</div><div>28</div><div>29</div><div>30</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	
+	<!-- Место проведения -->
+	<section class="torn-paper-green-section">
+		<!-- Блок места проведения -->
+		<div class="container">
+			<h2>Место проведения</h2>
+				<p class="location-address">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill=red d="M12 1a9.002 9.002 0 0 0-6.366 15.362c1.63 1.63 5.466 3.988 5.693 6.465.034.37.303.673.673.673s.64-.303.673-.673c.227-2.477 4.06-4.831 5.689-6.46A9.002 9.002 0 0 0 12 1m0 12.079a3.079 3.079 0 1 1 0-6.158 3.079 3.079 0 0 1 0 6.158"></path></svg>
+					Гомельский район, Приборский сельсовет, трасса М-10, 76-й километр
+				</p>
+			
+			<div class="location-content">
+				<!-- Блок с фото места -->
+				<div class="location-photo-wrapper">
+					<!-- Замените location.jpg на реальное фото загородного комплекса -->
+					<img src="location.jpg" alt="Место проведения торжества" class="location-photo">
+				</div>
+				
+				<!-- Блок с интерактивной картой Яндекс -->
+				<div class="location-map-wrapper">
+					<!-- Встроена карта с точным отображением участка 76-го км трассы М-10 в Приборском сельсовете -->
+					<iframe src="https://yandex.by/map-widget/v1/org/dukat/2768558783/?ll=30.812160%2C52.384761&z=16" width="100%" height="100%" frameborder="0" allowfullscreen="true" style="position:relative;"></iframe>
+				</div>
+			</div>
+		</div>
+	</section>	
+
+    <!-- Дресс-код -->
+    <section class="torn-paper-section">
+        <div class="container">
+            <h2>Дресс-код</h2>
+            <p>Мы очень ждём и готовимся к нашему незабываемому дню! Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами по возможности в палитре мероприятия, чтобы не сильно выбиваться.</p>
+            <div class="palette">
+                <!-- Вы можете заменить HEX-коды цветов на свои -->
+                <div class="palette-item">
+					<div class="color-circle" style="background-color: #8b9377;" title="Шалфей"></div>
+					<span class="color-name">Шалфей</span>
+				</div>
+                <div class="palette-item">
+					<div class="color-circle" style="background-color: #f1ecdf;" title="Слоновая кость"></div>
+					<span class="color-name">Слоновая кость</span>
+				</div>
+                <div class="palette-item">
+					<div class="color-circle" style="background-color: #e2cfaf;" title="Шампанское"></div>
+					<span class="color-name">Шампанское</span>
+				</div>
+                <div class="palette-item">
+					<div class="color-circle" style="background-color: #ccb49b;" title="Пыльно-бежевый"></div>
+					<span class="color-name">Пыльно-бежевый</span>
+				</div>
+                <div class="palette-item">
+					<div class="color-circle" style="background-color: #77764e;" title="Оливковый"></div>
+					<span class="color-name">Оливковый</span>
+				</div>
+			</div>
         </div>
     </section>
 
     <!-- Программа дня (Тайминг) -->
-    <section>
+    <section class="torn-paper-green-section">
         <div class="container">
             <h2>Программа дня</h2>
             <div class="timeline">
@@ -209,29 +596,14 @@
         </div>
     </section>
 
-    <!-- Дресс-код -->
-    <section>
-        <div class="container">
-            <h2>Дресс-код</h2>
-            <p>Мы будем очень благодарны, если при выборе нарядов для нашего праздника вы поддержите нежную цветовую гамму свадьбы:</p>
-            <div class="palette">
-                <!-- Вы можете заменить HEX-коды цветов на свои -->
-                <div class="color-circle" style="background-color: #e3d7d0;" title="Бежевый"></div>
-                <div class="color-circle" style="background-color: #dbb3ab;" title="Пыльная роза"></div>
-                <div class="color-circle" style="background-color: #c4cdc1;" title="Шалфей"></div>
-                <div class="color-circle" style="background-color: #b2c0cc;" title="Серо-голубой"></div>
-            </div>
-        </div>
-    </section>
-
     <!-- Анкета гостя -->
-    <section>
+    <section class="torn-paper-section">
         <div class="container">
             <h2>Подтвердите свое присутствие</h2>
-            <p>Пожалуйста, заполните анкету до 1 июня, чтобы мы учли ваши пожелания.</p>
+            <p>Пожалуйста, заполните анкету до 1 февраля, чтобы мы учли ваши пожелания.</p>
             
             <!-- Для отправки формы можно использовать бесплатный сервис formspree.io -->
-            <form action="https://formspree.io/f/xbgdzanq" method="POST">
+            <form action="https://formspree.io" method="POST">
                 <div class="form-group">
                     <label for="name">Ваше имя и фамилия:</label>
                     <input type="text" id="name" name="name" placeholder="Иван и Ольга Ивановы" required>
@@ -248,11 +620,14 @@
                 <div class="form-group">
                     <label for="alcohol">Предпочтения по напиткам:</label>
                     <select id="alcohol" name="alcohol">
-                        <option value="wine-red">Вино красное</option>
-                        <option value="wine-white">Вино белое</option>
-                        <option value="champagne">Шампанское</option>
-                        <option value="strong">Крепкие напитки</option>
-                        <option value="non-alcoholic">Не употребляю алкоголь</option>
+                        <option value="Вино красное полусладкое">Вино красное полусладкое</option>
+                        <option value="Вино красное полусухое">Вино красное полусухое</option>
+                        <option value="Вино белое полусладкое">Вино белое полусладкое</option>
+                        <option value="Вино белое полусухое">Вино белое полусухое</option>
+                        <option value="Самогон">Самогон</option>
+                        <option value="Водка">Водка</option>
+                        <option value="Коньяк">Коньяк</option>
+                        <option value="Не употребляю алкоголь">Не употребляю алкоголь</option>
                     </select>
                 </div>
 
