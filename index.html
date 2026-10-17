@@ -8,12 +8,11 @@
     <!-- Подключаем красивый шрифт с Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&family=Montserrat&family=Cormorant+Garamond" rel="stylesheet">
     
     <style>
         /* Общие стили для страницы */
         body {
-            margin: 20;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: #5f8b4f;
@@ -23,7 +22,7 @@
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif; font-style: italic;
+            font-family: 'Great Vibes', cursive;
 			font-size: 40px;
             font-weight: 400;
             margin-bottom: 20px;
@@ -139,7 +138,7 @@
 		}
 			
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-style: italic;
+            font-family: 'Great Vibes', cursive;
             font-size: 3.2rem;
             margin: 5px 0;
             letter-spacing: 1px;
@@ -158,7 +157,6 @@
         .date {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
-            margin-top: 25px;
             font-style: italic;
             color: #ca9e92;
         }
@@ -335,19 +333,239 @@
             max-width: 400px;
         }
 
-        .timeline-item {
-            margin-bottom: 30px;
-            border-left: 2px solid #ca9e92;
-            padding-left: 20px;
-            position: relative;
-        }
+		.timeline-item {
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 2.2rem;
+			position: relative;
+		}
+
+		.timeline-item:last-child {
+			margin-bottom: 0;
+		}
+
+		@media (min-width: 680px) {
+			.timeline-item {
+				width: 75%;
+			}
+			
+			.timeline-item:nth-child(odd) {
+				margin-left: -35%;
+				margin-right: auto;
+				padding-right: 3.85rem;
+				flex-direction: row-reverse;
+			}
+
+			.timeline-item:nth-child(even) {
+				margin-left: auto;
+				margin-right: -35%;
+				padding-left: 3.85rem;
+			}
+
+			.timeline-item:nth-child(odd) .timeline-badge {
+				right: -24px;
+				left: auto;
+			}
+
+			.timeline-item:nth-child(even) .timeline-badge {
+				left: -24px;
+				right: auto;
+			}
+
+			.timeline-item:nth-child(odd) .timeline-header-block {
+				align-items: flex-end;
+			}
+		}
+
+		.timeline-badge {
+		  position: absolute;
+		  left: 0;
+		  top: 0;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  z-index: 2;
+		}
+
+		.badge-icon-wrap {
+		  width: 48px;
+		  height: 48px;
+		  border-radius: 50%;
+		  background: #ffffff;
+		  border: 1.8px solid #D1B89A;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  color: #7B5E4A;
+		  box-shadow: 0 4px 12px rgba(59, 42, 32, 0.08);
+		  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		.timeline-item:hover .badge-icon-wrap {
+		  transform: scale(1.08);
+		  background-color: #7B5E4A;
+		  color: #ffffff;
+		}
+
+		.timeline-card {
+		  background: #ffffff;
+		  padding: 1rem 1rem;
+		  border-radius: 16px;
+		  border: 1px solid rgba(150, 151, 133, 0.3);
+		  box-shadow: 0 10px 30px -5px rgba(74, 63, 53, 0.06), 0 4px 12px rgba(107, 130, 88, 0.04);
+		  margin-left: 64px;
+		  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		@media (min-width: 680px) {
+			.timeline-card {
+				margin-left: 0;
+				width: 500px;
+			}
+		}
+
+		.timeline-card:hover {
+		  box-shadow: 0 20px 45px -10px rgba(74, 63, 53, 0.1), 0 0 20px rgba(138, 158, 120, 0.1);
+		  border-color: #D1B89A;
+		}
+
+		/* Блок заголовка таймлайна: время СВЕРХУ на отдельной строке */
+		.timeline-header-block {
+		  flex-direction: column;
+		  align-items: flex-start;
+		  margin-bottom: 0.5rem;
+		}
+
+		/* Крупное акцентное время */
+		.timeline-time {
+		  display: inline-block;
+		  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+		  font-size: 1.7rem;
+		  font-weight: 700;
+		  color: #A67C52;
+		  line-height: 1.1;
+		  margin-bottom: 0.2rem;
+		  letter-spacing: 0.02em;
+		}
+
+		.timeline-title {
+			font-family: 'Great Vibes', cursive;
+			font-size: 3rem;
+			color: #000000;
+			font-weight: 500;
+			line-height: 1;
+		}
+
+		.timeline-desc {
+		  font-size: 0.88rem;
+		  color: #000000;
+		  line-height: 1.55;
+		}
 
         .timeline-time {
             font-weight: 500;
-            color: #ca9e92;
+            color: #000000;
             font-size: 1.1rem;
         }
 
+		.timeline-wrap {
+			position: relative;
+			max-width: 680px;
+			margin: 0px auto;
+		}
+
+		.timeline-wrap::before {
+			content: "";
+			position: absolute;
+			top: 1.5rem;
+			bottom: 1.5rem;
+			left: 24px;
+			width: 2px;
+			background: #000000;
+		}
+
+		@media (min-width: 680px) {
+		  .timeline-wrap::before {
+			left: 50%;
+			transform: translateX(-50%);
+		  }
+		}
+
+        /* Стили для деревенского блока */
+        .village-day-section {
+            background-color: #fcfbfa;
+            padding: 60px 20px;
+        }
+
+        .village-card {
+            border: 2px dashed #bba08d; /* Мягкий контур цвета глины/дерева */
+            background-color: #f6ebd9; /* Теплый, уютный пшенично-кремовый фон */
+            padding: 40px 30px;
+            border-radius: 16px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(187, 160, 141, 0.08);
+            box-sizing: border-box;
+        }
+
+        /* Текстовый ярлык сверху */
+        .village-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #bba08d;
+            color: white;
+            padding: 5px 18px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        .village-intro {
+            font-size: 1rem;
+            color: #5c524a;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Список деталей */
+        .village-details {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .village-item {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95rem;
+            color: #443b35;
+            line-height: 1.4;
+        }
+
+        .village-icon {
+            font-size: 1.6rem;
+            margin-right: 18px;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 480px) {
+            .village-card { padding: 35px 15px; }
+            .village-intro { font-size: 0.95rem; }
+            .village-item { font-size: 0.9rem; }
+            .village-icon { font-size: 1.4rem; margin-right: 12px; }
+        }
+		
         /* Дресс-код */
         /* Общий контейнер для всей палитры */
         .palette {
@@ -383,6 +601,37 @@
             color: #6e6560;
             font-weight: 400;
             line-height: 1.2;
+        }
+
+        /* Стили для блока подарков */
+        .gifts-card {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+			color: #000000;
+            padding: 30px;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eae5e1;
+        }
+
+        .gifts-icon-wrapper {
+            color: #ca9e92; /* Цвет пыльной розы для бантика */
+            margin-bottom: 15px;
+        }
+
+        .gifts-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Выделение блока про цветы */
+        .gifts-highlight {
+            border-top: 1px solid #eae5e1;
+            margin-top: 20px;
+            padding-top: 20px;
+            color: #4a3e3d !important;
         }
 
         /* Анкета RSVP (Форма) */
@@ -485,6 +734,17 @@
             margin-top: 20px;
         }
 
+		.scroll-reveal {
+		  opacity: 0;
+		  transform: translateY(24px);
+		  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		.scroll-reveal.revealed {
+		  opacity: 1;
+		  transform: translateY(0);
+		}
+
         /* Адаптивность для мобильных телефонов */
         @media (max-width: 480px) {
             .hero { padding: 40px 10px; min-height: auto; }
@@ -504,7 +764,91 @@
             .timer-item span { font-size: 1.8rem; }
             .timer-label { font-size: 0.65rem; }
         }
-		</style>
+
+		@media (max-width: 600px) {
+			.timeline-wrap::before {
+				left: 18px;
+			}
+
+			.timeline-badge {
+				left: -1px;
+			}
+
+			.badge-icon-wrap {
+				width: 38px;
+				height: 38px;
+			}
+
+			.badge-icon-wrap svg {
+				width: 18px;
+				height: 18px;
+			}
+
+			.timeline-card {
+				margin-left: 50px;
+				width: calc(100% - 50px);
+				padding: 1rem 1rem;
+			}
+
+			.timeline-time {
+				font-size: 1.45rem;
+			}
+
+			.timeline-title {
+				font-size: 2rem;
+			}
+		}
+		
+		/* Плавающая кнопка музыки */
+        .floating-music-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px; /* Кнопка будет уютно парить в правом нижнем углу */
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ca9e92; /* Цвет пыльной розы */
+            border: none;
+            box-shadow: 0 4px 15px rgba(202, 158, 146, 0.4);
+            cursor: pointer;
+            z-index: 9999; /* Всегда поверх всех элементов сайта */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-music-btn:hover {
+            transform: scale(1.08);
+            background-color: #b3887d;
+        }
+
+        .music-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        /* Класс анимации вращения, который будет добавляться, когда музыка играет */
+        .music-playing {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(202, 158, 146, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(202, 158, 146, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(202, 158, 146, 0); }
+        }
+
+        /* Мобильная адаптация, чтобы кнопка не перекрывала важные элементы */
+        @media (max-width: 480px) {
+            .floating-music-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+	</style>
 </head>
 <body>
 
@@ -573,8 +917,9 @@
 			<h2>Место проведения</h2>
 				<p class="location-address">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill=red d="M12 1a9.002 9.002 0 0 0-6.366 15.362c1.63 1.63 5.466 3.988 5.693 6.465.034.37.303.673.673.673s.64-.303.673-.673c.227-2.477 4.06-4.831 5.689-6.46A9.002 9.002 0 0 0 12 1m0 12.079a3.079 3.079 0 1 1 0-6.158 3.079 3.079 0 0 1 0 6.158"></path></svg>
-					Гомельский район, Приборский сельсовет, трасса М-10, 76-й километр
+					Гомельский район, Приборский сельсовет, трасса М-10, 76-й километр.
 				</p>
+				<b class="location-address")>Будет организован транспорт до места торжества.</b>
 			
 			<div class="location-content">
 				<!-- Блок с фото места -->
@@ -626,32 +971,117 @@
     <!-- Программа дня (Тайминг) -->
     <section class="torn-paper-green-section">
         <div class="container">
-            <h2>Программа дня</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-time">16:00</div>
-                    <div>Сбор гостей и легкий фуршет</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-time">16:30</div>
-                    <div>Торжественная выездная регистрация</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-time">18:00</div>
-                    <div>Свадебный ужин и развлекательная программа</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-time">22:00</div>
-                    <div>Праздничный торт и финал вечера</div>
-                </div>
-            </div>
-        </div>
+        <h2>Программа дня</h2>
+			<div class="timeline-wrap" id="timeline-list">
+				<div class="timeline-item scroll-reveal revealed">
+					<div class="timeline-badge">
+						<div class="badge-icon-wrap"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h6v5c0 1.66-1.34 3-3 3S5 10.66 5 9V4z"/><path d="M8 12v6"/><path d="M6 18h4"/><path d="M5 6.5h6" stroke-dasharray="1 1"/><g transform="translate(19, 4) rotate(15) translate(-19, -4)"><path d="M13 4h6v5c0 1.66-1.34 3-3 3s-3-1.66-3-3V4z"/><path d="M16 12v6"/><path d="M14 18h4"/><path d="M13 6.5h6" stroke-dasharray="1 1"/></g><path d="M12 2v1M12 5v.5M9.5 2.5l.5.5M14.5 2.5l-.5.5" stroke-width="1.2"/></svg></div>
+					</div>
+					<div class="timeline-card">
+						<div class="timeline-header-block">
+							<span class="timeline-time">15:00</span>
+							<h4 class="timeline-title">Сбор гостей</h4>
+						</div>
+					</div>
+				</div>
+				
+				<div class="timeline-item scroll-reveal revealed">
+					<div class="timeline-badge">
+						<div class="badge-icon-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="12" r="6"></circle><circle cx="15" cy="12" r="6"></circle><path d="M12 6l1.5-2h3L18 6"></path></svg></div>
+					</div>
+					<div class="timeline-card">
+						<div class="timeline-header-block">
+							<span class="timeline-time">15:30</span>
+							<h4 class="timeline-title">Торжественная выездная регистрация</h4>
+					</div>
+					</div>
+				</div>
+				
+				<div class="timeline-item scroll-reveal revealed">
+					<div class="timeline-badge">
+						<div class="badge-icon-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div>
+					</div>
+					<div class="timeline-card">
+						<div class="timeline-header-block">
+							<span class="timeline-time">16:00</span>
+							<h4 class="timeline-title">Фотосессия с гостями</h4>
+					</div>
+					</div>
+				</div>
+				
+				<div class="timeline-item scroll-reveal revealed">
+					<div class="timeline-badge">
+						<div class="badge-icon-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2v20M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm-15 7V2M3 2v6a3 3 0 0 0 6 0V2"></path></svg></div>
+					</div>
+					<div class="timeline-card">
+						<div class="timeline-header-block">
+							<span class="timeline-time">17:00</span>
+							<h4 class="timeline-title">Свадебный ужин и развлекательная программа</h4>
+					</div>
+					</div>
+				</div>
+				
+				<div class="timeline-item scroll-reveal revealed">
+					<div class="timeline-badge">
+						<div class="badge-icon-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 6.9L21.3 12l-6.9 2.4L12 21.3l-2.4-6.9L2.7 12l6.9-2.4z"></path></svg></div>
+					</div>
+					<div class="timeline-card">
+						<div class="timeline-header-block">
+							<span class="timeline-time">22:00-00:00</span>
+							<h4 class="timeline-title">Праздничный торт и финал вечера</h4>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </section>
+
+	<!-- Блок второго дня свадьбы в деревне -->
+    <section class="torn-paper-section">
+		<section class="village-day-section">
+			<div class="container">
+				<div class="village-card">
+					<div class="village-badge">У бабушки в деревне</div>
+					<h2>Деревенский разгуляй</h2>
+					<p class="village-intro">Переходим в режим абсолютного расслабления и домашнего уюта! Ждём вас в гостях у бабушки, чтобы смыть усталость первого дня и душевно погулять на свежем воздухе.</p>
+					
+					<div class="village-details">
+						<div class="village-item">
+							<span class="village-icon">🥞</span>
+							<div><strong>27 июня 2027 (Воскресенье) • с 13:00</strong><br>В программе: бабушкины блины, шашлык на углях и картошка в казане.</div>
+						</div>
+						<div class="village-item">
+							<span class="village-icon">🏡</span>
+							<div><strong>Куда ехать:</strong><br>Гомельская область, Гомельский район, Грабовский с/с, д. Песочная Буда, ул. Фабричная, д. 9/2</div>
+						</div>
+						<div class="village-item">
+							<span class="village-icon">🧺</span>
+							<div><strong>Что брать с собой:</strong><br>Удобную одежду без пафоса (худи, кеды), банные принадлежности и хорошее настроение!</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<!-- Блок пожеланий по подаркам -->
+    <section class="torn-paper-green-section">
+		<div class="container">
+			<div class="gifts-card">
+				<!-- Компактная SVG-иконка подарка с бантиком в одну строку -->
+				<div class="gifts-icon-wrapper"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12M22 7H2v5h20V7zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+				
+				<h2>Пожелания по подаркам</h2>
+				<p>Дорогие гости, ваше присутствие — наш главный подарок! Но если вы хотите порадовать нас чем-то материальным, мы будем благодарны за вклад в бюджет нашей семьи в конвертах.</p>
+				<p class="gifts-highlight"><strong>💐 Важная просьба о цветах:</strong> Пожалуйста, не дарите нам живые букеты. Сразу после торжества мы отправляемся за город, и цветы быстро завянут. Если вам хочется сделать нам приятное — замените букет <strong>подарочным сертификатом</strong> (на уют для дома, книги или впечатления). Это будет невероятно практично и очень приятно для нас!</p>
+			</div>
+		</div>
+	</section>
 
     <!-- Анкета гостя -->
     <section class="torn-paper-section">
         <div class="container">
-            <h2>Подтвердите свое присутствие</h2>
+            <h2>Подтвердите своё присутствие</h2>
             <p>Пожалуйста, заполните анкету до 1 февраля, чтобы мы учли ваши пожелания.</p>
             
             <!-- Для отправки формы можно использовать бесплатный сервис formspree.io -->
@@ -683,7 +1113,15 @@
                     </select>
                 </div>
 
-                <button type="submit">Отправить ответ</button>
+                <div class="form-group">
+					<label>Сможете ли вы остаться с нами на второй день (27 июня)?</label>
+					<div class="radio-group">
+						<label><input type="radio" name="second_day" value="Да" checked> Да, остаюсь!</label>
+						<label><input type="radio" name="second_day" value="Нет"> Приеду только на первый день</label>
+					</div>
+				</div>
+
+				<button type="submit">Отправить ответ</button>
             </form>
         </div>
     </section>
@@ -718,8 +1156,8 @@
     <!-- Скрипт обратного отсчета -->
     <script>
         function updateTimer() {
-            // Задаем точную дату свадьбы (26 июня 2027 года, 16:00 — время сбора гостей)
-            const weddingDate = new Date("June 26, 2027 16:00:00").getTime();
+            // Задаем точную дату свадьбы (26 июня 2027 года, 15:00 — время сбора гостей)
+            const weddingDate = new Date("June 26, 2027 15:00:00").getTime();
             
             // Получаем текущее время
             const now = new Date().getTime();
@@ -752,6 +1190,65 @@
         updateTimer();
         // Обновляем таймер каждую секунду (1000 миллисекунд)
         const timerInterval = setInterval(updateTimer, 1000);
-    </script>
+	</script>
+    <!-- Скрипт фоновой музыки -->
+	<script>
+		const audio = document.getElementById("bg-music");
+		const musicBtn = document.getElementById("music-toggle");
+		let isMusicPlaying = false;
+
+		// Функция включения музыки
+		function playMusic() {
+			audio.play().then(() => {
+				isMusicPlaying = true;
+				musicBtn.classList.add("music-playing");
+				musicBtn.querySelector(".music-icon").innerText = "⏸️";
+			}).catch(err => {
+				console.log("Браузер всё ещё блокирует аудио-поток: ", err);
+			});
+		}
+
+		// Функция выключения музыки
+		function pauseMusic() {
+			audio.pause();
+			isMusicPlaying = false;
+			musicBtn.classList.remove("music-playing");
+			musicBtn.querySelector(".music-icon").innerText = "🎵";
+		}
+
+		// 1. Логика клика строго по самой плавающей кнопке
+		musicBtn.addEventListener("click", function(e) {
+			e.stopPropagation(); // Не даем клику уйти на весь сайт
+			if (isMusicPlaying) {
+				pauseMusic();
+			} else {
+				playMusic();
+			}
+		});
+
+		// 2. БЕЗОТКАЗНЫЙ МЕХАНИЗМ АВТОЗАПУСКА ПРИ ПЕРВОМ ДЕЙСТВИИ НА САЙТЕ
+		// Как только гость кликнет в ЛЮБОМ месте, сделает скролл или нажмет кнопку — музыка включится
+		function initAudioOnInteraction() {
+			if (!isMusicPlaying) {
+				playMusic();
+			}
+			// Удаляем обработчики, чтобы они не срабатывали при каждом повторном клике
+			events.forEach(event => document.removeEventListener(event, initAudioOnInteraction));
+		}
+
+		// Перечень всех возможных действий пользователя для активации
+		const events = ["click", "touchstart", "mousedown", "keydown", "scroll"];
+		events.forEach(event => document.addEventListener(event, initAudioOnInteraction, { once: true }));
+	</script>
+
+	<!-- Скрытый аудиоплеер. Поместите аудиофайл под именем music.mp3 в корень проекта -->
+	<audio id="bg-music" loop>
+		<source src="music.mp3" type="audio/mpeg">
+	</audio>
+
+	<!-- Плавающая кнопка управления музыкой -->
+	<button id="music-toggle" class="floating-music-btn" aria-label="Управление музыкой">
+		<span class="music-icon">🎵</span>
+	</button>
 </body>
 </html>
