@@ -1153,6 +1153,11 @@
 		</div>
 	</section>
 
+	<!-- Скрытый аудиоплеер. Поместите аудиофайл под именем music.mp3 в корень проекта -->
+	<audio id="bg-music" loop preload="auto" crossorigin="anonymous">
+		<source src="music.mp3" type="audio/mpeg">
+	</audio>
+
     <!-- Скрипт обратного отсчета -->
     <script>
         function updateTimer() {
@@ -1240,11 +1245,6 @@
 		const events = ["click", "touchstart", "mousedown", "keydown", "scroll"];
 		events.forEach(event => document.addEventListener(event, initAudioOnInteraction, { once: true }));
 	</script>
-
-	<!-- Скрытый аудиоплеер. Поместите аудиофайл под именем music.mp3 в корень проекта -->
-	<audio id="bg-music" loop>
-		<source src="music.mp3" type="audio/mpeg">
-	</audio>
 
 	<!-- Плавающая кнопка управления музыкой -->
 	<button id="music-toggle" class="floating-music-btn" aria-label="Управление музыкой">
