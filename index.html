@@ -1158,6 +1158,11 @@
 		<source src="music.mp3" type="audio/mpeg">
 	</audio>
 
+	<!-- Плавающая кнопка управления музыкой -->
+	<button id="music-toggle" class="floating-music-btn" aria-label="Управление музыкой">
+		<span class="music-icon">🎵</span>
+	</button>
+
     <!-- Скрипт обратного отсчета -->
     <script>
         function updateTimer() {
@@ -1245,10 +1250,5 @@
 		const events = ["click", "touchstart", "mousedown", "keydown", "scroll"];
 		events.forEach(event => document.addEventListener(event, initAudioOnInteraction, { once: true }));
 	</script>
-
-	<!-- Плавающая кнопка управления музыкой -->
-	<button id="music-toggle" class="floating-music-btn" aria-label="Управление музыкой">
-		<span class="music-icon">🎵</span>
-	</button>
 </body>
 </html>
