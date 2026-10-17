@@ -17,7 +17,6 @@
             font-family: 'Montserrat', sans-serif;
             background-color: #5f8b4f;
             color: #ffffff;
-            line-height: 1.6;
             text-align: center;
         }
 
@@ -41,76 +40,165 @@
             border-bottom: none;
         }
         
-		/* Стили экрана-заставки */
+        /* Общий контейнер заставки */
         #welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #f4efeb; /* Нежный пастельный фон */
+            background-color: #fcfbfa;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100000; /* Самый высокий приоритет, поверх плавающей кнопки */
-            transition: opacity 0.8s ease, visibility 0.8s ease; /* Плавное исчезновение */
+            z-index: 100000;
+            transition: opacity 0.9s ease, visibility 0.9s ease;
         }
 
-        .welcome-content {
-            text-align: center;
+        /* Центрирование конверта */
+        .envelope-wrapper {
             padding: 20px;
-            animation: fadeIn 1.5s ease;
+            width: 100%;
+            max-width: 550px;
+            box-sizing: border-box;
         }
 
-        .welcome-top {
-            font-size: 0.9rem;
+        /* Основное тело конверта */
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background-color: #eae5e1; /* Внутренняя/задняя часть конверта (чуть темнее) */
+            border-radius: 8px;
+            box-shadow: 0 12px 40px rgba(74, 62, 61, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* НОВАЯ ГЕОМЕТРИЯ: Верхний треугольный клапан (теперь без даты внутри) */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #efeae6; 
+            clip-path: polygon(0% 0%, 100% 0%, 50% 55%); 
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 35px; /* Увеличили отступ сверху, чтобы имена встали идеально */
+            box-sizing: border-box;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Контейнер для текста внутри треугольника клапана */
+        .envelope-text-content {
+            position: relative;
+            text-align: center;
+            max-width: 75%; 
+            z-index: 3;
+        }
+
+        .envelope-title {
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: #8c7b70;
-            margin-bottom: 10px;
+            color: #000000;
+            margin: -15px 0 10px 0;
         }
 
-        .welcome-names {
+        .envelope-names {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: #4a3e3d;
-            margin: 10px 0;
+            font-size: 3.2rem;
+            color: #000000;
+            margin: -4px;
+            line-height: 1;
         }
 
-        .welcome-date {
+        /* ИСПРАВЛЕНО: Полное управление позицией даты на конверте */
+        .envelope-date {
+            position: absolute;
+            bottom: 45px; /* Жестко вешаем дату в нижнюю часть конверта */
+            left: 50%;
+            transform: translateX(-50%); /* Центрируем по горизонтали */
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            color: #ca9e92;
-            margin-bottom: 35px;
+            font-size: 1.3rem;
+            color: #4a3e3d; /* Сделали цвет чуть глубже, чтобы он благородно смотрелся на светлом фоне */
             font-style: italic;
+            font-weight: 600;
+            margin: 0;
+            
+            /* 🔑 Управление осями наложения: */
+            z-index: 5; /* Выше, чем клапан (2) и складки бумаги (1), поэтому дата полностью видна поверх конверта */
+        }
+		
+        /* Декоративная нижняя часть (имитация боковых складок конверта) */
+        .envelope-back-paper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f4efeb;
+            clip-path: polygon(0% 100%, 100% 100%, 50% 55%);
+            z-index: 1;
+            border-radius: 0 0 8px 8px;
         }
 
-        /* Красивая кнопка входа */
-        #open-site-btn {
-            padding: 15px 35px;
-            background-color: #ca9e92;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            letter-spacing: 1px;
+        /* ИСПРАВЛЕНО: Сургучная печать СТРОГО ПО ЦЕНТРУ всего конверта */
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* translate(-50%, -50%) — центрирует кнопку идеально по осям X и Y */
+            transform: translate(-50%, -40%) scale(1); 
+            width: 105px;
+            height: 105px;
+            background-color: #ca9e92; /* Розовый сургуч */
+            border: 3px solid #b3887d;
+            border-radius: 50%;
+            color: #ffffff;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(202, 158, 146, 0.4);
+            z-index: 10; /* Поверх всех слоев бумаги */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(179, 136, 125, 0.45), 
+                        inset 0 0 10px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
 
-        #open-site-btn:hover {
-            background-color: #b3887d;
-            transform: translateY(-2px);
+        .wax-seal:hover {
+            transform: translate(-50%, -40%) scale(1.05);
+            background-color: #bd9084;
+            box-shadow: 0 8px 25px rgba(179, 136, 125, 0.55), 
+                        inset 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Анимация плавного появления текста заставки */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .seal-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
+        /* Адаптивность под мобильные телефоны */
+        @media (max-width: 480px) {
+            .envelope { height: 320px; }
+            .envelope-flap { padding-top: 25px; clip-path: polygon(0% 0%, 100% 0%, 50% 55%); }
+            .envelope-names { font-size: 2.3rem; }
+            .envelope-title { font-size: 0.7rem; letter-spacing: 3px; }
+            .envelope-date { bottom: 35px; font-size: 1.1rem; } /* Корректируем положение на смартфонах */
+            .wax-seal { width: 95px; height: 95px; }
+            .seal-text { font-size: 0.6rem; }
+        }
+		
         /* Главный экран */
         .hero {
             background-color: #f4efeb;
@@ -146,7 +234,7 @@
 			
         /* Положение верхней веточки */
         .branch-top {
-            top: -70px;           /* Выталкиваем наверх, ровно на линию рамки */
+            top: -75px;           /* Выталкиваем наверх, ровно на линию рамки */
 			left: 15%;
             /* Трюк для идеального центрирования: сдвиг назад на половину своей ширины */
             transform: translateX(-50%) rotate(90deg); 
@@ -154,7 +242,7 @@
 
         /* Положение нижней веточки */
         .branch-bottom {
-            bottom: -70px;        /* Опускаем вниз, ровно на линию рамки */
+            bottom: -75px;        /* Опускаем вниз, ровно на линию рамки */
 			left: 85%;
             /* Центрируем и зеркально переворачиваем веточку вверх ногами */
             transform: translateX(-50%) rotate(270deg); 
@@ -921,13 +1009,31 @@
 	</style>
 </head>
 <body>
-	<!-- Красивый стартовый экран-заставка -->
+	<!-- Экран-заставка в виде свадебного конверта -->
 	<div id="welcome-screen">
-		<div class="welcome-content">
-			<p class="welcome-top">Приглашение на свадьбу</p>
-			<h2 class="welcome-names">Владислав & Виолетта</h2>
-			<p class="welcome-date">26.06.2027</p>
-			<button id="open-site-btn">Открыть приглашение ✨</button>
+		<div class="envelope-wrapper">
+			<div class="envelope">
+				
+				<!-- Верхний треугольный клапан (содержит только титул и имена) -->
+				<div class="envelope-flap">
+					<div class="envelope-text-content">
+						<p class="envelope-title">Приглашение на свадьбу</p>
+						<h2 class="envelope-names">Владислав & Виолетта</h2>
+					</div>
+				</div>
+				
+				<!-- Нижняя декоративная часть конверта -->
+				<div class="envelope-back-paper"></div>
+				
+				<!-- ИСПРАВЛЕНО: Дата вынесена из треугольника в самый низ конверта -->
+				<div class="envelope-date">26.06.2027</div>
+				
+				<!-- Сургучная печать-кнопка -->
+				<button id="open-site-btn" class="wax-seal" aria-label="Открыть приглашение">
+					<span class="seal-text">Открыть<br>приглашение</span>
+				</button>
+				
+			</div>
 		</div>
 	</div>
 
