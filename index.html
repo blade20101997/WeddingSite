@@ -40,6 +40,76 @@
         section:last-child {
             border-bottom: none;
         }
+        
+		/* Стили экрана-заставки */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f4efeb; /* Нежный пастельный фон */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000; /* Самый высокий приоритет, поверх плавающей кнопки */
+            transition: opacity 0.8s ease, visibility 0.8s ease; /* Плавное исчезновение */
+        }
+
+        .welcome-content {
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .welcome-top {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #8c7b70;
+            margin-bottom: 10px;
+        }
+
+        .welcome-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #4a3e3d;
+            margin: 10px 0;
+        }
+
+        .welcome-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #ca9e92;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+
+        /* Красивая кнопка входа */
+        #open-site-btn {
+            padding: 15px 35px;
+            background-color: #ca9e92;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(202, 158, 146, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        #open-site-btn:hover {
+            background-color: #b3887d;
+            transform: translateY(-2px);
+        }
+
+        /* Анимация плавного появления текста заставки */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         /* Главный экран */
         .hero {
@@ -851,6 +921,15 @@
 	</style>
 </head>
 <body>
+	<!-- Красивый стартовый экран-заставка -->
+	<div id="welcome-screen">
+		<div class="welcome-content">
+			<p class="welcome-top">Приглашение на свадьбу</p>
+			<h2 class="welcome-names">Владислав & Виолетта</h2>
+			<p class="welcome-date">26.06.2027</p>
+			<button id="open-site-btn">Открыть приглашение ✨</button>
+		</div>
+	</div>
 
     <!-- Главный экран -->
     <section class="hero">
@@ -1205,8 +1284,9 @@
 	<script>
 		const audio = document.getElementById("bg-music");
 		const musicBtn = document.getElementById("music-toggle");
+		const welcomeScreen = document.getElementById("welcome-screen");
+		const openBtn = document.getElementById("open-site-btn");
 		let isMusicPlaying = false;
-		let isAutoplayAttempted = false; // Флаг, чтобы не пытаться запустить музыку повторно, если гость сам нажал паузу
 
 		// Функция включения музыки
 		function playMusic() {
@@ -1214,9 +1294,7 @@
 				isMusicPlaying = true;
 				musicBtn.classList.add("music-playing");
 				musicBtn.querySelector(".music-icon").innerText = "⏸️";
-			}).catch(err => {
-				console.log("Браузер заблокировал автоматический аудио-поток: ", err);
-			});
+			}).catch(err => console.log("Запуск звука отклонен: ", err));
 		}
 
 		// Функция выключения музыки
@@ -1227,38 +1305,23 @@
 			musicBtn.querySelector(".music-icon").innerText = "🎵";
 		}
 
-		// 1. Логика клика строго по самой плавающей кнопке
-		musicBtn.addEventListener("click", function(e) {
-			// Убираем stopPropagation, чтобы событие корректно обрабатывалось браузером
-			isAutoplayAttempted = true; // Фиксируем, что пользователь сам осознанно управлял плеером
+		// Клик по кнопке заставки — ГЛАВНЫЙ ТРИГГЕР ДЛЯ СМАРТФОНОВ
+		openBtn.addEventListener("click", function() {
+			// 1. Плавно скрываем экран заставки
+			welcomeScreen.style.opacity = "0";
+			welcomeScreen.style.visibility = "hidden";
+			
+			// 2. Включаем музыку (браузер разрешит, так как был жесткий клик по кнопке!)
+			playMusic();
+		});
+
+		// Обычная логика клика по плавающей кнопке (если гость захочет выключить музыку позже)
+		musicBtn.addEventListener("click", function() {
 			if (isMusicPlaying) {
 				pauseMusic();
 			} else {
 				playMusic();
 			}
-		});
-
-		// 2. ИСПРАВЛЕННЫЙ МЕХАНИЗМ АВТОЗАПУСКА ПРИ ПЕРВОМ КАСАНИИ ЭКРАНА
-		function initAudioOnInteraction() {
-			// Если музыку еще не пытались запустить и она сейчас выключена
-			if (!isAutoplayAttempted && !isMusicPlaying) {
-				isAutoplayAttempted = true;
-				playMusic();
-			}
-			// Полностью очищаем все глобальные слушатели после первого же любого действия гостя
-			events.forEach(event => {
-				window.removeEventListener(event, initAudioOnInteraction, { passive: true });
-				document.body.removeEventListener(event, initAudioOnInteraction);
-			});
-		}
-
-		// Слушаем события не только на документе, но и на глобальном окне window (для мобильного скролла)
-		const events = ["click", "touchstart", "pointerdown", "scroll"];
-		
-		events.forEach(event => {
-			// Навешиваем и на window, и на body для 100% покрытия на смартфонах
-			window.addEventListener(event, initAudioOnInteraction, { once: true, passive: true });
-			document.body.addEventListener(event, initAudioOnInteraction, { once: true });
 		});
 	</script>
 </body>
