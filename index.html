@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes&family=Montserrat&family=Cormorant+Garamond" rel="stylesheet">
-    
+    <link rel="icon" type="image/png" href="favicon.png">
+	
     <style>
         /* Общие стили для страницы */
         body {
@@ -903,26 +904,6 @@
 		  transform: translateY(0);
 		}
 
-        /* Адаптивность для мобильных телефонов */
-        @media (max-width: 480px) {
-            .hero { padding: 40px 10px; min-height: auto; }
-            .hero-border { padding: 40px 15px; }
-            .hero h1 { font-size: 2.3rem; }
-            .location-address {
-                display: block;
-                margin-left: 10px;
-                margin-right: 10px;
-                padding: 12px 15px;
-                font-size: 0.95rem;
-		}
-        
-		@media (max-width: 480px) {
-            #wedding-timer { gap: 10px; }
-            .timer-item { padding: 10px 5px; min-width: 60px; }
-            .timer-item span { font-size: 1.8rem; }
-            .timer-label { font-size: 0.65rem; }
-        }
-
 		@media (max-width: 600px) {
 			.timeline-wrap::before {
 				left: 18px;
@@ -984,6 +965,8 @@
         .music-icon {
             font-size: 1.3rem;
             line-height: 1;
+			display: inline-block;
+            width: auto;
         }
 
         /* Класс анимации вращения, который будет добавляться, когда музыка играет */
@@ -997,8 +980,22 @@
             100% { box-shadow: 0 0 0 0 rgba(202, 158, 146, 0); }
         }
 
-        /* Мобильная адаптация, чтобы кнопка не перекрывала важные элементы */
+        /* Адаптивность для мобильных телефонов */
         @media (max-width: 480px) {
+            .hero { padding: 40px 10px; min-height: auto; }
+            .hero-border { padding: 40px 15px; }
+            .hero h1 { font-size: 2.3rem; }
+            .location-address {
+                display: block;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+			}
+            #wedding-timer { gap: 10px; }
+            .timer-item { padding: 10px 5px; min-width: 60px; }
+            .timer-item span { font-size: 1.8rem; }
+            .timer-label { font-size: 0.65rem; }
             .floating-music-btn {
                 bottom: 20px;
                 right: 20px;
@@ -1336,6 +1333,10 @@
 			<!-- Сюда выведется сообщение, когда таймер завершится -->
 			<div id="timer-end-message"></div>
 		</div>
+	</section>
+
+	<section class="container">
+		<h1></h1>
 	</section>
 
 	<!-- Скрытый аудиоплеер. Поместите аудиофайл под именем music.mp3 в корень проекта -->
