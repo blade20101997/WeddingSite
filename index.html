@@ -838,6 +838,34 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        /* Контейнер для группы чекбоксов */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column; /* Выстраиваем варианты аккуратно вертикально */
+            gap: 12px;              /* Расстояние между строчками */
+            margin-top: 10px;
+        }
+
+        /* Стиль для каждой строчки с галочкой */
+        .checkbox-label {
+            display: flex;
+            align-items: center;    /* Центрируем квадратик галочки строго по вертикали с текстом */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: #4a3e3d;
+            cursor: pointer;
+            user-select: none;      /* Запрещаем случайное выделение текста при клике */
+        }
+
+        /* Увеличиваем сам квадратик чекбокса, чтобы по нему было удобно попадать пальцем на телефоне */
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 12px;     /* Отступ от квадратика до текста */
+            width: 18px;
+            height: 18px;
+            accent-color: #ca9e92;  /* Красим галочку в ваш фирменный цвет пыльной розы */
+            cursor: pointer;
+        }
+
         .radio-group {
             display: flex;
             gap: 20px;
@@ -1298,19 +1326,41 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="alcohol">Предпочтения по напиткам:</label>
-                    <select id="alcohol" name="alcohol">
-                        <option value="Вино красное полусладкое">Вино красное полусладкое</option>
-                        <option value="Вино красное полусухое">Вино красное полусухое</option>
-                        <option value="Вино белое полусладкое">Вино белое полусладкое</option>
-                        <option value="Вино белое полусухое">Вино белое полусухое</option>
-                        <option value="Самогон">Самогон</option>
-                        <option value="Водка">Водка</option>
-                        <option value="Коньяк">Коньяк</option>
-                        <option value="Не употребляю алкоголь">Не употребляю алкоголь</option>
-                    </select>
-                </div>
+				<div class="form-group">
+					<label>Предпочтения по напиткам (можно выбрать несколько):</label>
+					<div class="checkbox-group">
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Вино красное полусладкое">Вино красное полусладкое
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Вино красное полусухое">Вино красное полусухое
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Вино красное сухое">Вино красное сухое
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Вино белое полусладкое">Вино белое полусладкое
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Вино белое полусухое">Вино белое полусухое
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Вино белое сухое">Вино белое сухое
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Самогон">Самогон
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Водка">Водка
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Коньяк">Коньяк
+						</label>
+						<label class="checkbox-label">
+							<input type="checkbox" name="alcohol[]" value="Не употребляю алкоголь">Не употребляю алкоголь
+						</label>
+					</div>
+				</div>
 
                 <div class="form-group">
 					<label>Сможете ли вы остаться с нами на второй день (27 июня)?</label>
